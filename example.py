@@ -7,12 +7,12 @@ from scipy.stats import norm
 # User inputs
 # -----------
 
-A_floor = 20 # m2
 N_lamps = 4 # lamp
 P_lamp = 250 # mW lamp-1; emitted optical power from each lamp
-k = 0.5 # m2 W-1 s-1; virus UV susceptibility constant
-aer = 1 # h-1; air changes per hour 
 beam_angle  = 100 # ° (Force between 60 and 150)
+A_floor = 20 # m2
+aer = 1 # h-1; air changes per hour 
+k = 0.5 # m2 W-1 s-1; virus UV susceptibility constant
 confidence = 0.75 # Fraction; must be between 0.0 and 1.0
 
 
@@ -35,7 +35,7 @@ x = np.log10([uvpd, k, aer, coverage, beam_angle])
 x = x.reshape(1, -1)
 
 # Load and execute the trained model
-model = joblib.load("svr_model_20250401.pkl")
+model = joblib.load("svm.pkl")
 lr0 = model.predict(x)[0]
 
 # Compute the lower bound at the specified confidence
